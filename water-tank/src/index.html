@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Water Tank Visualization</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <h1>Water Tank Visualization</h1>
+  
+  <div class="input-row">
+    <label>Input:</label>
+    <input id="inputArray" value="0,4,0,0,0,6,0,6,4,0" />
+    <button onclick="render()">Visualize</button>
+  </div>
+
+  <div class="error" id="errorMsg"></div>
+
+  <div class="viz-block" id="inputBlock">
+    <p id="inputLabel"></p>
+    <svg id="inputSvg"></svg>
+  </div>
+
+  <div class="viz-block" id="outputBlock">
+    <p id="outputLabel"></p>
+    <svg id="outputSvg"></svg>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
