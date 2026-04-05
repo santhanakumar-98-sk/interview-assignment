@@ -1,0 +1,255 @@
+{
+  "info": {
+    "_postman_id": "40fdbf9d-73f7-4621-8d51-02d07b9c52b2",
+    "name": "Meeting Room Booking",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "15153087"
+  },
+  "item": [
+    {
+      "name": "Create room",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "minCapacity",
+            "value": "11",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "\r\n{\r\n  \"name\": \"Conf Room A\",\r\n  \"capacity\": 10,\r\n  \"floor\": 2,\r\n  \"amenities\": [\"TV\", \"AC\", \"WIFI\"]\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/rooms",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "rooms"
+          ],
+          "query": [
+            {
+              "key": "minCapacity",
+              "value": "11",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "List Rooms",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/rooms?amenity=WIFI&minCapacity=6",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "rooms"
+          ],
+          "query": [
+            {
+              "key": "amenity",
+              "value": "WIFI"
+            },
+            {
+              "key": "minCapacity",
+              "value": "6",
+              "type": "text"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Bookings",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"roomId\" :1,\r\n    \"title\" : \"Team Sync\",\r\n    \"organizerEmail\" :\"kumar@sk.com\",\r\n    \"startTime\" : \"2026-04-06T11:00\",\r\n    \"endTime\" : \"2026-04-06T12:10\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/bookings",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "bookings"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Idempotent Booking Creation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Idempotency-key",
+            "value": "booking-user10-room1-20260405",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"roomId\" :1,\r\n    \"title\" : \"Team Sync\",\r\n    \"organizerEmail\" :\"kumar@sk.com\",\r\n    \"startTime\" : \"2026-04-06T11:00\",\r\n    \"endTime\" : \"2026-04-06T11:30\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/bookings",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "bookings"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "List Boookings",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/bookings",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "bookings"
+          ],
+          "query": [
+            {
+              "key": "roomId",
+              "value": "1",
+              "disabled": true
+            },
+            {
+              "key": "limit",
+              "value": "3",
+              "type": "text",
+              "disabled": true
+            },
+            {
+              "key": "offset",
+              "value": "3",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Cancel Booking",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/bookings/1/cancel",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "bookings",
+            "1",
+            "cancel"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Report",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"roomId\" :5,\r\n    \"title\" : \"Team Sync\",\r\n    \"organizerEmail\" :\"kumar@sk.com\",\r\n    \"startTime\" : \"2026-04-02T18:00\",\r\n    \"endTime\" : \"2026-04-02T21:00\"\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/reports/room-utilization?from=2026-04-01T10:00&to=2026-04-10T10:00",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "reports",
+            "room-utilization"
+          ],
+          "query": [
+            {
+              "key": "from",
+              "value": "2026-04-01T10:00"
+            },
+            {
+              "key": "to",
+              "value": "2026-04-10T10:00"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
